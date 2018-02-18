@@ -4,28 +4,28 @@
 	<title>Rock Paper scissors!</title>
 	<script type="text/javascript">
 		function computerPlay(playerSelection, computerSelection) {
-			playerSelection.toLowerCase();
-			computerSelection.toLowerCase();
-			switch {
-				case playerSelection === computerSelection: 
-					return "Draw";
-					break;
-				case playerSelection == "rock" && computerSelection == "scissors":
-					return "You win! Rock beats scissors"
-					break;
-				case playerSelection == "paper" && computerSelection == "scissors":
-					return "You lose! Scissors beat paper";
-					break;
-				case playerSelection == "scissors" && computerSelection == "rock":
-					return "You lose! Rock beats scissors"
-					break;
-				case playerSelection == "scissors" && computerSelection == "paper":
-					return "You win! Scissors beats paper"
-					break;
-			}		
+			playerSelection = playerSelection.toLowerCase();
+			computerSelection = computerSelection.toLowerCase();
+			console.log(playerSelection);
+			console.log(computerSelection);
+			if (playerSelection == "rock" && computerSelection == "rock") {
+				return "draw";
+			} else if (playerSelection == "rock" && computerSelection == "paper") {
+					return "You lose! Paper beats rock!";
+			} else if (playerSelection == "rock" && computerSelection == "scissors"){
+					return "You win! Rock beats scissors";
+			} else if (playerSelection == "paper" && computerSelection == "scissors") {
+					return "You lose! Scissors beats paper";
+			} else if (playerSelection == "paper" && computerSelection == "rock") {
+					return "You win! Paper beats rock";
+			} else if (playerSelection == "scissors" && computerSelection == "rock") {
+					return "You lose! Rock beats scissors";
+			} else if (playerSelection == "scissors" && computerSelection == "paper") {
+					return "You win! Scissors beats paper";
 			}
-		
-			
+			else {
+				return "Wrong input!"
+			}
 		}
 	</script>
 </head>
