@@ -3,7 +3,12 @@
 <head>
 	<title>Rock Paper scissors!</title>
 	<script type="text/javascript">
-		function computerPlay(playerSelection, computerSelection) {
+		var options = ["rock", "paper", "scissors"]
+		function computerPlay() {
+			var result = options[Math.floor(Math.random()*options.length)];
+			return result;
+		}
+		function playRound(playerSelection, computerSelection) {
 			playerSelection = playerSelection.toLowerCase();
 			computerSelection = computerSelection.toLowerCase();
 			console.log(playerSelection);
@@ -27,6 +32,13 @@
 				return "Wrong input!"
 			}
 		}
+		function game(rounds) {
+			var playerInput = window.prompt("Rock, paper, scissors. What do you chose!?")
+			for (var i = 0; i < rounds; i++) {
+				playRound(playerInput, computerPlay());
+			}
+		}
+		game()
 	</script>
 </head>
 <body>
