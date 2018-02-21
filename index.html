@@ -11,27 +11,34 @@
 		function playRound(playerSelection, computerSelection) {
 			playerSelection = playerSelection.toLowerCase();
 			computerSelection = computerSelection.toLowerCase();
-			console.log(playerSelection);
-			console.log(computerSelection);
-			if (playerSelection == "rock" && computerSelection == "rock") {
-				return 2;
-			} else if (playerSelection == "rock" && computerSelection == "paper") {
+			//console.log("You picked " + playerSelection);
+			//console.log("The computer picked " +computerSelection);
+			if (playerSelection === "rock") {
+				if (computerSelection ==="paper") {
 					return 0;
-			} else if (playerSelection == "rock" && computerSelection == "scissors"){
-					return 1;
-			} else if (playerSelection == "paper" && computerSelection == "scissors") {
+				}else if (computerSelection === "scissors") {
+						return 1;
+				}else if (computerSelection === "rock") {
+				 		return 2;
+				 }
+			} else if (playerSelection === "paper") {
+					if (computerSelection === "paper") {
+						return 2;
+				} else if (computerSelection === "rock") {
+						return 1;
+				} else if (computerSelection === "scissors") {
+						return 0;
+					}
+			} else if (playerSelection === "scissors") {
+					if (computerSelection === "scissors") {
+						return 2;
+				} else if (computerSelection === "paper") {
+						return 1;
+				} else if (computerSelection === "rock") {
 					return 0;
-			} else if (playerSelection == "paper" && computerSelection == "rock") {
-					return 1;
-			} else if (playerSelection == "scissors" && computerSelection == "rock") {
-					return 0;
-			} else if (playerSelection == "scissors" && computerSelection == "paper") {
-					return 1;
+				}
 			}
-			else {
-				return "Error!"
 			}
-		}
 		function validateUserChoice(userChoice) {
 		  userChoice = userChoice.toLowerCase();
 		  if (userChoice !== "rock" && userChoice !== "paper" && userChoice !== "scissors") {
@@ -40,28 +47,42 @@
     	}
 		};
 		
-		function game(rounds) {
+		function printPicks() {
+			console.log("You picked ")
+			console.log("The computer picked ")
+		}
+
+
+		function game() {
+			rounds = 0;
 			var playerScore = 0;
-			var computerScore = 0;	
-			for (var i = 0; i < rounds; i++) {
-				while (true) {
-					var playerInput = window.prompt("Rock, paper, scissors. What do you chose!?")
-					validateUserChoice(playerInput);
-					break;
+			var computerScore = 0;
+			var draw = 0; 	
+			while (rounds < 3) {
+				rounds ++; 
+				var playerInput = window.prompt("Rock, paper, scissors. What do you chose!?")
+					while (validateUserChoice(playerInput) === false) {
+						var playerInput = window.prompt("Rock, paper, scissors. What do you chose!?")
+					}
+					if (playRound(playerInput, computerPlay()) === 1) {
+						printPicks(playerInput,computerPlay)
+						console.log("You win this round!");
+						playerScore ++;
+					} else if (playRound(playerInput, computerPlay()) === 0) {
+							console.log("You lose this round!");
+							computerScore ++;
+					}	else {
+						 console.log("Draw! You can't even beat a computer?!")
+						 draw ++;
+						}	
 				}
-				if (playRound(playerInput, computerPlay()) > 0) {
-					console.log("You win this round!")
-					playerScore ++;
-				} else if (playRound(playerInput, computerPlay()) < 1) {
-						console.log("You lose this round!")
-						computerScore ++;
-				}	else console.log("Draw! You can't even beat a computer?!")
-				}
-			console.log(playerScore) 
+			console.log("You won " + playerScore + " rounds. " + "The computer won " + computerScore + " rounds. " + draw + " rounds were draw." ) 
 			if (playerScore > computerScore) {
 				console.log("You are the winner! Congratulations!")
+			} else if (playerScore === computerScore) {
+						console.log("It's a draw. Try again!")
 			} else console.log("You are the loser! The machines have beaten us!")
-			}
+		}	
 	</script>
 </head>
 <body>
